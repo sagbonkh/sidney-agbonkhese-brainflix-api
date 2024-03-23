@@ -18,3 +18,11 @@ router.get("/", (_req, res) => {
   const videos = readData();
   res.json(videos);
 });
+
+router.get("/:id", (req, res) => {
+  const vids = readDetails();
+  const videoData = vids.find((vid) => vid.id === req.params.id);
+  res.json(videoData);
+});
+
+module.exports = router;

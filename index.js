@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const env = require("dotenv").config();
 
+const videoRoute = require("./routes/videos");
 const PORT = process.env.PORT;
 
 // .use is an express function used to mount express middleware
@@ -12,7 +13,10 @@ app.use(cors());
 //express.json parses incoming requests with json payloads
 // makes the app automatically parse JSON data from requests making it accessible by req.body
 app.use(express.json());
+
 app.use(express.static("public"));
+
+app.use("/videos", videoRoute);
 
 app.listen(PORT, () => {
   console.log(`Server is listening on ${PORT}`);
