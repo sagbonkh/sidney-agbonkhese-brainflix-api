@@ -16,6 +16,10 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
+app.use((req, res, next) => {
+  next();
+});
+
 app.use("/videos", videoRoute);
 
 app.listen(PORT, () => {
