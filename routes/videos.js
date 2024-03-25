@@ -54,4 +54,23 @@ router.post("/", (req, res) => {
   res.status(201).json(newPost);
 });
 
+router.post("/:id/comments", (req, res) => {
+  const today = new Date().valueOf();
+  const newComment = {
+    id: uuid(),
+    name: "guest",
+    comment: req.body.comment,
+    likes: 0,
+    timestamp: today,
+  };
+  const posts = readDetails();
+  const chosenPost = posts.find((post) => post.id === req.params.id);
+  const comments = chosenPost.comments;
+  comments.push(newComment);
+
+  fs.writeFileSync("./data/videos.json", JSON.stringify(posts));
+
+  res.status(201).json(newComment);
+});
+
 module.exports = router;
