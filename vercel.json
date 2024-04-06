@@ -8,6 +8,10 @@
   ],
   "routes": [
     {
+      "src": "/data/videos.json",
+      "dest": "data/videos.json"
+    },
+    {
       "src": "/(.*)",
       "dest": "index.js"
     }
